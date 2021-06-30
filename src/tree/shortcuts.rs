@@ -60,7 +60,7 @@ pub fn new_node(val: i32) -> Option<Rc<RefCell<TreeNode>>> {
 ///
 /// # Safety
 ///
-/// - The pointer must not be null, or the program will crash.
+/// - The pointer **must not** be null, or the program will crash.
 ///
 /// # Examples
 ///
