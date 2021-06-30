@@ -5,6 +5,7 @@ authors = ["Nian <niancw29@163.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
 description = "Rust tools for solving leetcode problems"
+documentation = "https://docs.rs/leetcode-test-utils"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
