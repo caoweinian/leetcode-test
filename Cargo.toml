@@ -1,11 +1,12 @@
 [package]
 name = "leetcode-test-utils"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Nian <niancw29@163.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
 description = "Rust tools for solving leetcode problems"
 documentation = "https://docs.rs/leetcode-test-utils"
+repository = "https://github.com/caoweinian/leetcode-test"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
