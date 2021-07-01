@@ -349,18 +349,20 @@ impl T {
     /// ```
     #[inline]
     pub fn height(&self) -> usize {
-        Self::height_maybe_null(to_ptr(self.0.as_ref()))
+        unsafe { Self::height_maybe_null(to_ptr(self.0.as_ref())) }
     }
 
+    /// Returns the height of the binary tree with given pointer as its root.
     #[inline]
-    fn height_maybe_null(root: *const TreeNode) -> usize {
+    unsafe fn height_maybe_null(root: *const TreeNode) -> usize {
         if root.is_null() {
             0
         } else {
-            unsafe { Self::height_nonnull(root) }
+            Self::height_nonnull(root)
         }
     }
 
+    /// Returns the height of the binary tree with given non-null pointer as its root.
     unsafe fn height_nonnull(root: *const TreeNode) -> usize {
         let mut stk = Vec::with_capacity(4);
         stk.set_len(1);
@@ -545,8 +547,8 @@ impl T {
             if !root.is_null() {
                 let left_ptr = to_ptr(unsafe { (*root).left.as_ref() });
                 let right_ptr = to_ptr(unsafe { (*root).right.as_ref() });
-                let mut h1 = T::height_maybe_null(left_ptr);
-                let mut h2 = T::height_maybe_null(right_ptr);
+                let mut h1 = unsafe { T::height_maybe_null(left_ptr) };
+                let mut h2 = unsafe { T::height_maybe_null(right_ptr) };
                 if h1 < h2 {
                     std::mem::swap(&mut h1, &mut h2);
                 }
@@ -682,6 +684,19 @@ impl T {
     }
 }
 
+// 2021/7/1; In progress
+// #[derive(Debug)]
+// pub struct ForestCmpResult {
+//     requires_answer: Vec<String>,
+//     not_answer: Vec<String>,
+//     accepted: Vec<String>,
+// }
+//
+//
+// pub fn forest_eq_seq_insensitive(output: &[TreeHandle], answer: &str) -> ForestCmpResult {
+//     unimplemented!()
+// }
+
 impl Display for T {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         f.write_str(&self.to_leetcode_raw())
@@ -749,7 +764,7 @@ macro_rules! new_right {
     };
 }
 
-/// Rapidly create a right child of the given node.
+/// Rapidly create left & right children of the given node.
 ///
 /// # Examples
 ///
