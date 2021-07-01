@@ -1,3 +1,5 @@
+//! Leetcode binary tree operations.
+
 pub mod diagnosis;
 pub mod prelude;
 pub mod raw_def;
