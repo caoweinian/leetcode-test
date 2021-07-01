@@ -1,4 +1,3 @@
-pub mod case_gen;
 pub mod diagnosis;
 pub mod prelude;
 pub mod raw_def;
